@@ -1,0 +1,48 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('company-background.jpg'); /* Update the path */
+    background-size: cover;
+    background-position: center;
+    color: #67128b; /* Text color */
+    margin: 20px;
+}
+
+h1 {
+    color: #6b083d; /* Company name color */
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: rgba(14, 42, 90, 0.8); /* Form background color with transparency */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333; /* Label text color */
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #85116f; /* Input border color */
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: #93192a; /* Submit button background color */
+    color: #1d0505; /* Submit button text color */
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #001206; /* Submit button hover color */
+}

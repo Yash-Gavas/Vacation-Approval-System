@@ -1,0 +1,88 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-size: cover;
+    background-position: center;
+    color: #ba3394; /* Text color */
+    margin: 20px;
+}
+
+h1 {
+    color: #d8c6d5; /* Company name color */
+}
+#response {
+    background-image: url('company-background.jpg'); /* Update the path */
+    background-color: #3f053a; /* Approved message box background color */
+    color: #0e0210; /* Approved message text color */
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+/* General styles for all pages */
+.page {
+    background-image: url('company-background.jpg'); /* Default background image */
+}
+
+.message-box {
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+/* Denied page styles */
+.denied-page {
+    background-color: #01090d; /* Denied page background color */
+    color: #260426; /* Denied message text color */
+    box-shadow: 0 0 10px rgba(139, 18, 143, 0.5);
+}
+
+.denied-box {
+    background-color: #01090d; /* Denied message box background color */
+    color: #1e021d; /* Denied message text color */
+    padding: 15px;
+}
+
+/* Approved page styles */
+.approved-page {
+    background-color: #0d0a0b; /* Approved page background color */
+    color: #1e0822; /* Approved message text color */
+}
+
+
+
+/* Add additional styles as needed */
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #dbd0d033;
+}
+
+label {
+    color: #f9e7f3; /* Label text color */
+    display: block;
+    margin-bottom: 8px;
+}
+
+input, select {
+    border: 1px solid #d04dd2; /* Input border color */
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    padding: 10px;
+    width: 100%;
+}
+
+input[type="submit"] {
+    background-color: #d1c5ca; /* Submit button background color */
+    color: #803434; /* Submit button text color */
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #490f48; /* Submit button hover color */
+}

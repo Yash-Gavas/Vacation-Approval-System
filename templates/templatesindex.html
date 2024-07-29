@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vacation Request Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script>
+        var loggedInEmployeeId = '130';  // Update this with the actual logged-in employee's ID
+
+        var employeesData = {
+            'hr': [
+                { name: 'Samantha H', id: '101' },
+                { name: 'Alexander B', id: '102' },
+                { name: 'Olivia K', id: '103' },
+                { name: 'Nathan P', id: '104' },
+                { name: 'Isabella G', id: '105' },
+                { name: 'Ethan M', id: '106' }
+            ],
+            'it': [
+                { name: 'Sophia L', id: '107' },
+                { name: 'Jacob C', id: '108' },
+                { name: 'Ava J', id: '109' },
+                { name: 'Mason S', id: '110' },
+                { name: 'Abigail F', id: '111' },
+                { name: 'Liam D', id: '112' }
+            ],
+            'tester': [
+                { name: 'Rashmitha M', id: '113' },
+                { name: 'Aiden R', id: '114' },
+                { name: 'Grace N', id: '115' },
+                { name: 'Logan T', id: '116' },
+                { name: 'Emma A', id: '117' },
+                { name: 'Carter H', id: '118' }
+            ],
+            'developer': [
+                { name: 'Aria E', id: '119' },
+                { name: 'Lucas V', id: '120' },
+                { name: 'Lily B', id: '121' },
+                { name: 'Jackson Q', id: '122' },
+                { name: 'Madison Y', id: '123' },
+                { name: 'Noah K', id: '124' }
+            ],
+            'intern': [
+                { name: 'Chloe I', id: '125' },
+                { name: 'Landon W', id: '126' },
+                { name: 'Zoe X', id: '127' },
+                { name: 'Elijah U', id: '128' },
+                { name: 'Penelope Z', id: '129' },
+                { name: 'Mia L', id: '130' }
+            ],
+            'financial': [
+                { name: 'Evan N', id: '131' },
+                { name: 'Scarlett C', id: '132' },
+                { name: 'Liam D', id: '133' },
+                { name: 'Avery R', id: '134' },
+                { name: 'Owen P', id: '135' },
+                { name: 'Hannah M', id: '136' }
+            ],
+            'marketing': [
+                { name: 'Wyatt J', id: '137' },
+                { name: 'Addison F', id: '138' },
+                { name: 'Jayden G', id: '139' },
+                { name: 'Natalie S', id: '140' },
+                { name: 'Gabriel H', id: '141' },
+                { name: 'Ella B', id: '142' },
+            ],
+            'assistant_engineer': [
+                { name: 'Colton Y', id: '143' },
+                { name: 'Aurora V', id: '144' },
+                { name: 'Isaac T', id: '145' },
+                { name: 'Leah K', id: '146' },
+                { name: 'Caleb J', id: '147' },
+                { name: 'Aaliyah P', id: '148' }
+            ],
+            'assistant_manager': [
+                { name: 'Yash Gavas', id: '149' }
+            ],
+            'manager': [
+                { name: 'Sharanya M S', id: '150' }
+            ],
+        };
+
+        function filterEmployees() {
+            var roleSelect = document.getElementById('department');
+            var employeeSelect = document.getElementById('employeeId');
+
+            var selectedRole = roleSelect.value.toLowerCase();
+
+            employeeSelect.innerHTML = '';
+
+            var defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.text = 'Select Employee';
+            employeeSelect.add(defaultOption);
+
+            var employees = employeesData[selectedRole] || [];
+
+            employees.forEach(function (employee) {
+                addEmployeeOption(employee.name, employee.id);
+            });
+
+            document.getElementById('employee_id').disabled = false;
+        }
+
+        function addEmployeeOption(employeeName, employeeId) {
+            var option = document.createElement('option');
+            option.value = employeeId;
+            option.text = employeeName;
+            document.getElementById('employeeId').add(option);
+        }
+        function showMessage() {
+        // Display the pop-up message
+        var popup = document.getElementById('popup-message');
+        popup.style.display = 'block';
+
+        // Hide the message after 3 seconds (adjust the duration as needed)
+        setTimeout(function() {
+            popup.style.display = 'none';
+        }, 3000);
+    }
+
+    // Check if the show_popup variable is true, then call showMessage()
+    {% if show_popup %}
+        window.onload = function() {
+            showMessage();
+        }
+    {% endif %}
+    </script>
+</head>
+
+<body style="background-image: url('{{ url_for('static', filename='company-background.jpg') }}');">
+
+    <div class="container">
+        <h1>TECHNOLOGY TECH PARK</h1>
+
+        <form method="POST" action="/approve_request">
+            <label for="department">Department:</label>
+            <select id="department" name="department" onchange="filterEmployees()" required>
+                <option value="HR">HR</option>
+                <option value="IT">IT</option>
+                <option value="Tester">Tester</option>
+                <option value="Developer">Developer</option>
+                <option value="Intern">Intern</option>
+                <option value="Financial">Financial</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Assistant_Engineer">Assistant_Engineer</option>
+                <option value="Assistant_Manager">Assistant_Manager</option>
+                <option value="Manager">Manager</option>
+                <!-- Add other department options as needed -->
+            </select>
+
+            <label for="employeeId">Select Employee:</label>
+            <select name="employeeId" id="employeeId" required>
+                <!-- Options will be dynamically added based on the selected role -->
+            </select>
+
+            <label for="employee_id">Employee ID:</label>
+            <input type="text" id="employee_id" name="employee_id" required>
+
+            <label for="start_date">Start Date:</label>
+            <input type="date" id="start_date" name="start_date" required>
+
+            <label for="end_date">End Date:</label>
+            <input type="date" id="end_date" name="end_date" required>
+
+            <label for="reason">Reason:</label>
+            <textarea id="reason" name="reason" rows="4" required></textarea>
+
+            <input type="submit" value="Submit">
+        </form>
+
+        <div id="response">
+            {% if result %}
+                {% if denied %}
+                    <p class="denied">{{ result }}</p>
+                    <p class="denied-reason">Reason: {{ denial_reason }}</p>
+                    {% if nearby_free_dates %}
+                        <p>Nearby Free Dates:</p>
+                        <ul>
+                            {% for date in nearby_free_dates %}
+                                <li>{{ date }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% else %}
+                    <p>{{ result }}</p>
+                {% endif %}
+            {% endif %}
+        </div>
+        
+    </div>
+</body>
+
+</html>
